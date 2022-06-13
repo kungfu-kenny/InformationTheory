@@ -5,9 +5,10 @@ class CheckEntropy:
     """
     class which is dedicated to check the basic entropies from the usage
     """
-    def __init__(self, message:str='') -> None:
+    def __init__(self, message:str='', k:int=1) -> None:
         self.message = message
         self.name_count = {}
+        self.k = k
 
     def calculate_dict_count(self, used_str:str='', used_bool:bool=False) -> None:
         """
@@ -31,7 +32,7 @@ class CheckEntropy:
                 for i in set(list(used_str))
             }
 
-    def calculate_entropy(self, used_dict:dict={}, used_str:str='') -> int:
+    def calculate_entropy(self, used_dict:dict={}, used_str:str='', used_k:int=0) -> int:
         """
         Method which is dedicated to calculate entropy from the 
         Input:  used_dict = dictionary value for the 
@@ -45,7 +46,9 @@ class CheckEntropy:
             e = -sum(math.log2(j) for j in self.calculate_dict_count(used_str, True).values())
         elif used_dict and not used_str:
             e = -sum(math.log2(j) for j in used_dict.values())
-        return round(e, 3)
+        if not used_k:
+            used_k = self.k
+        return used_k * round(e, 3)
 
 if __name__ == '__main__':
     a = CheckEntropy(input())
