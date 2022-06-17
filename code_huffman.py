@@ -1,5 +1,8 @@
 
 
+from pprint import pprint
+
+
 class CodeHuffman:
     """
     class which is dedicated to work with Huffman encoding/decoding
@@ -59,14 +62,8 @@ class CodeHuffman:
         min_use, min_next, value_continue = self.find_smallest_elements(value_list)
         if not value_continue:
             if len(value_list) == 1:
-                print('We are here!!!!')
                 return value_list[0]
             left, right = value_list
-            if left[1] >= right[1]:
-                return {
-                    '1': right[0],
-                    '0': left[0]
-                }
             return {
                 '1': left[0],
                 '0': right[0]
@@ -135,5 +132,6 @@ if __name__ == '__main__':
     tst = input()
     a = CodeHuffman(tst)
     encoded, encoded_dict = a.produce_encoding_basic()
+    pprint(encoded_dict)
     tst_check = a.produce_decoding_basic(encoded, encoded_dict)
     
