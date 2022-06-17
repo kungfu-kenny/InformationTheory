@@ -132,6 +132,5 @@ if __name__ == '__main__':
     tst = input()
     a = CodeHuffman(tst)
     encoded, encoded_dict = a.produce_encoding_basic()
-    pprint(encoded_dict)
     tst_check = a.produce_decoding_basic(encoded, encoded_dict)
     
